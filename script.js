@@ -8,15 +8,13 @@ const cols = 100;
 const rows = 100;
 const cellSize = width / cols;
 
-function make2dArray(rows, cols) {
-  let arr = new Array(rows)
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = new Array(cols)
+const grid = [];
+for (let y = 0; y < rows; y++) {
+  grid[y] = [];
+  for (let x = 0; x < cols; x++) {
+    grid[y][x] = 0;
   }
-  return arr;
 }
-
-const grid = make2dArray(rows, cols);
 
 function draw() {
   ctx.clearRect(0, 0, width, height);
