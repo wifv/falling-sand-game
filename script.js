@@ -63,4 +63,15 @@ canvas.addEventListener('mousemove', (event) => {
   }
 });
 
+canvas.addEventListener('touchmove', (event) => {
+  const rect = canvas.getBoundingClientRect();
+  const mouseX = event.touches[0].clientX - rect.left;
+  const mouseY = event.touches[0].clientY - rect.top;
+  const gridX = Math.floor(mouseX / cellSize);
+  const gridY = Math.floor(mouseY / cellSize);
+
+  grid[gridY][gridX] = 1;
+});
+
+
 gameLoop();
