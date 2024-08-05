@@ -9,17 +9,41 @@
     body {
       margin: 0;
       padding: 0;
+      font-family: 'Inter', sans-serif;
     }
     main {
       border: 1px solid black;
       width: 800px;
       height: 800px;
     }
+    #delete,
+    button {
+      padding: 10px;
+      border: 2px solid black;
+      background-color: white;
+      font-size: 25px;
+    }
+    .active {
+      background-color: black;
+      color: white;
+    }
+    h1 {
+      font-weight: 500;
+    }
+    #delete:active {
+      background-color: black;
+      color: white;
+    }
   </style>
 </head>
 <body>
   <main>
-    <canvas id="canvas" width="800" height="800"></canvas>`
+    <canvas id="canvas" width="800" height="800"></canvas>
+    <h3></h3>
+    <h1>You can also use the mouse wheel to delete sand</h1>
+    <button type="button" id="delete">delete all</button>
+    <button type="button" class="button" id="generate-mode">generate mode</button>
+    <button type="button" class="button" id="delete-mode">delete mode</button>
   </main>
   <script src="script.js"></script>
 </body>

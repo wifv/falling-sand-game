@@ -63,15 +63,44 @@ canvas.addEventListener('mousemove', (event) => {
   }
 });
 
-canvas.addEventListener('touchmove', (event) => {
+const buttons = document.querySelectorAll('.button')
+const generateMode = document.getElementById('generate-mode')
+const deleteMode = document.getElementById('delete-mode')
+const deleteAll = document.getElementById('delete')
+
+deleteAll.addEventListener('click', () => {
+  ctx.clearRect(0, 0, width, height);
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      grid[y][x] = 0
+    }
+  }
+})
+
+function myFunc(event, state) {
   const rect = canvas.getBoundingClientRect();
   const mouseX = event.touches[0].clientX - rect.left;
   const mouseY = event.touches[0].clientY - rect.top;
   const gridX = Math.floor(mouseX / cellSize);
   const gridY = Math.floor(mouseY / cellSize);
 
-  grid[gridY][gridX] = 1;
-});
+  grid[gridY][gridX] = state;
+}
 
+generateMode.addEventListener('click', () => {
+  canvas.addEventListener('touchmove', (event) => {myFunc(event, 1)});
+})
+
+deleteMode.addEventListener('click', () => {
+  canvas.addEventListener('touchmove', (event) => {myFunc(event, 0)});
+})
+
+buttons.forEach(e => {
+  e.addEventListener('click', () => {
+    buttons[0].classList.remove('active');
+    buttons[1].classList.remove('active');
+    e.classList.add('active');
+  })
+})
 
 gameLoop();
